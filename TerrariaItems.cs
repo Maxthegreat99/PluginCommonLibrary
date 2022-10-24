@@ -270,7 +270,7 @@ namespace Terraria.Plugins.Common {
     }
 
     public int CreateNew(TSPlayer forPlayer, DPoint location, ItemData itemData, bool sendPacket = true) {
-      int itemIndex = Item.NewItem(
+      int itemIndex = Item.NewItem(null, 
         location.X, location.Y, 0, 0, (int)itemData.Type, itemData.StackSize, true, (int)itemData.Prefix
       );
 

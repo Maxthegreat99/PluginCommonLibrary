@@ -1,5 +1,4 @@
 ﻿using System;
-using OTAPI.Tile;
 
 namespace Terraria.Plugins.Common {
   public static class TileEx {

@@ -985,9 +985,7 @@ namespace Terraria.Plugins.Common.Hooks {
           }
         }
       } catch (Exception ex) {
-        ServerApi.LogWriter.PluginWriteLine(
-          this.Plugin, $"Internal error on handling data packet {e.MsgID}. Exception details: \n{ex}", TraceLevel.Error
-        );
+
       }
     }
 
@@ -1014,9 +1012,7 @@ namespace Terraria.Plugins.Common.Hooks {
     }
 
     private void ReportEventHandlerException(string eventName, Exception exception) {
-      ServerApi.LogWriter.PluginWriteLine(
-        this.Plugin, $"One {eventName} event handler has thrown an unexpected exception. Exception details:\n{exception}", TraceLevel.Error
-      );
+  
     }
 
     [Conditional("DEBUG")]

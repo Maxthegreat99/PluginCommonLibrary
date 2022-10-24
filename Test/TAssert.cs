@@ -1,5 +1,4 @@
 ﻿using System;
-using OTAPI.Tile;
 using DPoint = System.Drawing.Point;
 
 namespace Terraria.Plugins.Common.Test {

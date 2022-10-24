@@ -1,34 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>net6.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1D38E0CF-BF13-4229-860F-3809F39F0892}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Terraria.Plugins.Common</RootNamespace>
     <AssemblyName>Plugin Common Lib 4.2.0</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Verbose</DefineConstants>
-    <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\CCPluginsCommon.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
@@ -65,24 +52,56 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>TRACE;DEBUG;Verbose</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\CCPluginsCommon.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\Release\CCPluginsCommon.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
@@ -118,169 +137,87 @@
     <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
     <CodeContractsSQLServerOption />
     <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>References\Mono.Data.Sqlite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OTAPI">
-      <HintPath>..\TShock\TerrariaServerAPI\TerrariaServerAPI\bin\Debug\OTAPI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Collections\ItemsAdapter.cs" />
-    <Compile Include="Collections\Inventory.cs" />
-    <Compile Include="Collections\NetItemsAdapter.cs" />
-    <Compile Include="Collections\PlayerItemsAdapter.cs" />
-    <Compile Include="Hooks\ChatTextEventArgs.cs" />
-    <Compile Include="Hooks\ChestOpenEventArgs.cs" />
-    <Compile Include="Hooks\ChestPlaceEventArgs.cs" />
-    <Compile Include="Hooks\ChestRenameEventArgs.cs" />
-    <Compile Include="Hooks\NpcTookDamageEventArgs.cs" />
-    <Compile Include="Hooks\MassWireOperationEventArgs.cs" />
-    <Compile Include="Hooks\TeleportEventArgs.cs" />
-    <Compile Include="Hooks\PlayerSlotEventArgs.cs" />
-    <Compile Include="Hooks\SendTileSquareEventArgs.cs" />
-    <Compile Include="Hooks\ObjectPlacementEventArgs.cs" />
-    <Compile Include="Hooks\TeleportType.cs" />
-    <Compile Include="Hooks\TilePaintEventArgs.cs" />
-    <Compile Include="Hooks\UnlockEventArgs.cs" />
-    <Compile Include="Hooks\PlayerDeathEventArgs.cs" />
-    <Compile Include="TerrariaNpcs.cs" />
-    <Compile Include="TerrariaProjectiles.cs" />
-    <Compile Include="_Data\JsonTSPlayerConverter.cs" />
-    <Compile Include="_Enums and Structs\DoorAction.cs" />
-    <Compile Include="_Enums and Structs\HerbGrowthState.cs" />
-    <Compile Include="_Enums and Structs\HerbStyle.cs" />
-    <Compile Include="_Enums and Structs\InvasionType.cs" />
-    <Compile Include="_Enums and Structs\ObjectMeasureData.cs" />
-    <Compile Include="_Enums and Structs\PaintColor.cs" />
-    <Compile Include="_Enums and Structs\PressurePlateKind.cs" />
-    <Compile Include="_Enums and Structs\TrapStyle.cs" />
-    <Compile Include="_Enums and Structs\UnlockType.cs" />
-    <Compile Include="_Enums and Structs\WireColor.cs" />
-    <Compile Include="_General Exceptions\PaymentException.cs" />
-    <Compile Include="_Threading\AsyncWorkQueue.cs" />
-    <Compile Include="Hooks\DoorUseEventArgs.cs" />
-    <Compile Include="Hooks\PlayerSpawnEventArgs.cs" />
-    <Compile Include="_General Exceptions\ChestNotEmptyException.cs" />
-    <Compile Include="_General Exceptions\InvalidChestStyleException.cs" />
-    <Compile Include="_General Exceptions\PlayerDataCreationException.cs" />
-    <Compile Include="TerrariaItems.cs" />
-    <Compile Include="_Enums and Structs\BossType.cs" />
-    <Compile Include="_Enums and Structs\ChestKind.cs" />
-    <Compile Include="_Enums and Structs\ChestStyle.cs" />
-    <Compile Include="_Enums and Structs\Direction.cs" />
-    <Compile Include="_Enums and Structs\ItemData.cs" />
-    <Compile Include="_Enums and Structs\LiquidKind.cs" />
-    <Compile Include="_Interaction\CommandInteraction.cs" />
-    <Compile Include="_Interaction\CommandInteractionResult.cs" />
-    <Compile Include="_Data\DatabaseHandlerBase.cs" />
-    <Compile Include="_Data\MetadataHandlerBase.cs" />
-    <Compile Include="_General Exceptions\TaskExceptionEventArgs.cs" />
-    <Compile Include="_Utility Classes\BoolEx.cs" />
-    <Compile Include="_Utility Classes\Check.cs" />
-    <Compile Include="_Utility Classes\CollectionEx.cs" />
-    <Compile Include="_Utility Classes\DateTimeEx.cs" />
-    <Compile Include="_Utility Classes\FrameTimer.cs" />
-    <Compile Include="_Utility Classes\JsonUnixTimestampConverter.cs" />
-    <Compile Include="Collections\PlayerDataDictionary.cs" />
-    <Compile Include="_Utility Classes\PlayerEventArgs.cs" />
-    <Compile Include="_Utility Classes\TileEx.cs" />
-    <Compile Include="_Utility Classes\Timer.cs" />
-    <Compile Include="_Utility Classes\TimerBase.cs" />
-    <Compile Include="_Utility Classes\TimerManager.cs" />
-    <Compile Include="_Utility Classes\TimeSpanEx.cs" />
-    <Compile Include="Hooks\BossSpawnEventArgs.cs" />
-    <Compile Include="Hooks\ChestModifySlotEventArgs.cs" />
-    <Compile Include="Hooks\ItemUpdateEventArgs.cs" />
-    <Compile Include="Hooks\ItemOwnerEventArgs.cs" />
-    <Compile Include="Hooks\LiquidSetEventArgs.cs" />
-    <Compile Include="Hooks\PlayerModifySlotEventArgs.cs" />
-    <Compile Include="Hooks\TileLocationEventArgs.cs" />
-    <Compile Include="Hooks\NetHookEventArgs.cs" />
-    <Compile Include="Hooks\GetDataHookHandler.cs" />
-    <Compile Include="Hooks\SignEditEventArgs.cs" />
-    <Compile Include="Hooks\TileEditEventArgs.cs" />
-    <Compile Include="Test\AssertException.cs" />
-    <Compile Include="Test\TAssert.cs" />
-    <Compile Include="IMetadataFile.cs" />
-    <Compile Include="PluginInfo.cs" />
-    <Compile Include="PluginTrace.cs" />
-    <Compile Include="_Utility Classes\PointEx.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Collections\SerializableDictionary.cs" />
-    <Compile Include="_Enums and Structs\StatueStyle.cs" />
-    <Compile Include="Collections\StringCollection.cs" />
-    <Compile Include="TerrariaUtils.cs" />
-    <Compile Include="_Enums and Structs\TileEditType.cs" />
-    <Compile Include="_Utility Classes\TShockEx.cs" />
-    <Compile Include="_Interaction\UserInteractionHandlerBase.cs" />
-    <Compile Include="_Data\WorldMetadataHandlerBase.cs" />
-    <Compile Include="Test\TestContext.cs" />
-    <Compile Include="Test\TestDelay.cs" />
-    <Compile Include="Test\TestRunData.cs" />
-    <Compile Include="Test\TestRunnerBase.cs" />
-    <Compile Include="TerrariaTiles.cs" />
-    <Compile Include="_General Exceptions\InvalidBlockTypeException.cs" />
-    <Compile Include="_General Exceptions\LimitEnforcementException.cs" />
-    <Compile Include="_General Exceptions\MissingPermissionException.cs" />
-    <Compile Include="_General Exceptions\PlayerNotLoggedInException.cs" />
-    <Compile Include="_General Exceptions\TileProtectedException.cs" />
-    <Compile Include="_Utility Classes\TSPlayerEventArgs.cs" />
-    <Compile Include="_Utility Classes\Vector2Ex.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TShock\TerrariaServerAPI\TerrariaServerAPI\TerrariaServerAPI.csproj">
-      <Project>{6877506e-adc6-4142-98a6-79e4fa02855a}</Project>
-      <Name>TerrariaServerAPI</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\TShock\TShockAPI\TShockAPI.csproj">
-      <Project>{49606449-072b-4cf5-8088-aa49da586694}</Project>
-      <Name>TShockAPI</Name>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="CONTRIBUTING.md" />
-    <None Include="packages.config" />
-    <None Include="publish.ps1" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\CCPluginsCommon.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsSQLServerOption />
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.346202">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MySql.Data" Version="6.10.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ModFramework">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\ModFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\OTAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="TerrariaServer">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\TerrariaServer.dll</HintPath>
+    </Reference>
+    <Reference Include="TShockAPI">
+      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\ServerPlugins\TShockAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <PreBuildEvent>IF "$(ConfigurationName)" == "Release" (
   GitVersion.exe /updateassemblyinfo "$(ProjectDir)Properties/AssemblyInfo.cs"
 )</PreBuildEvent>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

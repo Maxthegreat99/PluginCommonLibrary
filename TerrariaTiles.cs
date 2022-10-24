@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using OTAPI.Tile;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ObjectData;
