@@ -984,7 +984,7 @@ namespace Terraria.Plugins.Common.Hooks {
             break;
           }
         }
-      } catch (Exception ex) {
+      } catch (Exception) {
 
       }
     }

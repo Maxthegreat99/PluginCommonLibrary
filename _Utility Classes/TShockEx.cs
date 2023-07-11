@@ -115,8 +115,8 @@ namespace Terraria.Plugins.Common {
       return null;
     }
 
-    public static void SendTileSquare(this TSPlayer player, DPoint location, int size = 10) {
-      player.SendTileSquare(location.X, location.Y, size);
+    public static void SendTileSquareCentered(this TSPlayer player, DPoint location, byte size = 10) {
+      player.SendTileSquareCentered(location.X, location.Y, size);
     }
 
     /// <summary>

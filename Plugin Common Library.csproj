@@ -183,35 +183,18 @@
     <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="C:\Users\mcjac\.nuget\packages\tshock\5.2.0\contentFiles\any\net6.0\HttpServer.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.346202">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MySql.Data" Version="6.10.9" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ModFramework">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\ModFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="OTAPI">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\OTAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="TerrariaServer">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\bin\TerrariaServer.dll</HintPath>
-    </Reference>
-    <Reference Include="TShockAPI">
-      <HintPath>J:\Downloads\TShock-Beta-win-x64-Release-4\ServerPlugins\TShockAPI.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="TShock" Version="5.2.0" />
   </ItemGroup>
   <PropertyGroup />
   <PropertyGroup>

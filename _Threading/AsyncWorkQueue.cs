@@ -196,7 +196,7 @@ namespace Terraria.Plugins.Common {
             try {
               this.workers[i].Join(TimeSpan.FromSeconds(30));
             } catch (AggregateException) {
-              this.workers[i].Abort();
+              this.workers[i].Interrupt();
             }
           }
         }
@@ -206,6 +206,7 @@ namespace Terraria.Plugins.Common {
     }
 
     public void Dispose() {
+      queuedItems.Dispose();
       this.Dispose(true);
       GC.SuppressFinalize(this);
     }

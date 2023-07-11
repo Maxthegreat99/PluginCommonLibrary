@@ -130,7 +130,7 @@ namespace Terraria.Plugins.Common {
       }
 
       tile.frameX = Convert.ToInt16((int)style * TerrariaUtils.DefaultTextureTileSize);
-      TSPlayer.All.SendTileSquare(tileLocation.X, tileLocation.Y, 3);
+      TSPlayer.All.SendTileSquareCentered(tileLocation.X, tileLocation.Y, 3);
     }
 
     public void SetBlock(DPoint tileLocation, int blockType, bool localOnly = false, bool squareFrame = true) {
@@ -147,7 +147,7 @@ namespace Terraria.Plugins.Common {
       if (squareFrame)
         WorldGen.SquareTileFrame(tileLocation.X, tileLocation.Y, true);
       if (!localOnly)
-        TSPlayer.All.SendTileSquare(tileLocation.X, tileLocation.Y, 1);
+        TSPlayer.All.SendTileSquareCentered(tileLocation.X, tileLocation.Y, 1);
     }
 
     public void RemoveBlock(DPoint tileLocation, bool squareFrames = true, bool localOnly = false) {
@@ -162,7 +162,7 @@ namespace Terraria.Plugins.Common {
       if (squareFrames)
         WorldGen.SquareTileFrame(tileLocation.X, tileLocation.Y);
       if (!localOnly)
-        TSPlayer.All.SendTileSquare(tileLocation.X, tileLocation.Y, 1);
+        TSPlayer.All.SendTileSquareCentered(tileLocation.X, tileLocation.Y, 1);
     }
 
     public void RemoveTile(DPoint tileLocation, bool squareFrames = true, bool localOnly = false) {
@@ -924,7 +924,7 @@ namespace Terraria.Plugins.Common {
           tile.frameX += 36;
       }
       
-      TSPlayer.All.SendTileSquare(anyChestTileLocation, 4);
+      TSPlayer.All.SendTileSquareCentered(anyChestTileLocation, 4);
     }
 
     public bool IsChestStyleLockable(ChestStyle chestKind) {

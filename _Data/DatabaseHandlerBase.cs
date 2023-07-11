@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Mono.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using MySql.Data.MySqlClient;
 
 using TShockAPI;
@@ -42,7 +42,7 @@ namespace Terraria.Plugins.Common {
           break;
         case "sqlite":
           this.DbConnection = new SqliteConnection(
-            string.Format("uri=file://{0},Version=3", sqliteDatabaseFilePath)
+            string.Format("Data Source={0}", sqliteDatabaseFilePath)
           );
 
           break;
