@@ -48,7 +48,7 @@ namespace Terraria.Plugins.Common {
         blockType == TileID.Lever ||
         blockType == TileID.PressurePlates ||
         blockType == TileID.Timers ||
-        blockType == TileID.MusicBoxes
+        blockType == TileID.MusicBoxes 
       );
     }
 
@@ -408,7 +408,7 @@ namespace Terraria.Plugins.Common {
         TileID.MusicBoxes,
         TileID.Timers,
         TileID.HolidayLights
-      };
+      }; 
     });
     /// <remarks>
     ///   Objects whoose state can be changed by circuits.
@@ -563,6 +563,8 @@ namespace Terraria.Plugins.Common {
           return ItemID.SpikyBallTrap;
         case TrapStyle.SpearTrap:
           return ItemID.SpearTrap;
+        case TrapStyle.VenomDartTrap:
+            return ItemID.VenomDartTrap;
         default:
           return ItemID.None;
       }
@@ -662,6 +664,9 @@ namespace Terraria.Plugins.Common {
         [StatueStyle.Seagull] = ItemID.SeagullStatue,
         [StatueStyle.Owl] = ItemID.OwlStatue,
         [StatueStyle.Turtle] = ItemID.TurtleStatue,
+        [StatueStyle.Cockatiel] = ItemID.CockatielStatue,
+        [StatueStyle.Macaw] = ItemID.MacawStatue,
+        [StatueStyle.Toucan] = ItemID.ToucanStatue
       };
     });
     public int GetItemTypeFromStatueStyle(StatueStyle statueStyle) {
@@ -767,6 +772,9 @@ namespace Terraria.Plugins.Common {
         new Tuple<ChestStyle, bool>(ChestStyle.BambooChest, false),
         new Tuple<ChestStyle, bool>(ChestStyle.DesertChest, false),
         new Tuple<ChestStyle, bool>(ChestStyle.DesertChest, true),
+        new Tuple<ChestStyle, bool>(ChestStyle.AshWoodChest, false),
+        new Tuple<ChestStyle, bool>(ChestStyle.BalloonChest, false),
+        new Tuple<ChestStyle, bool>(ChestStyle.ReefChest, false)
       };
     });
     public ChestStyle GetChestStyle(ushort tileId, int objectStyle, out bool isLocked) {
@@ -869,6 +877,9 @@ namespace Terraria.Plugins.Common {
         [ChestStyle.SandstoneChest] = ItemID.DesertChest,
         [ChestStyle.BambooChest] = ItemID.BambooChest,
         [ChestStyle.DesertChest] = ItemID.DungeonDesertChest,
+        [ChestStyle.AshWoodChest] = ItemID.AshWoodChest,
+        [ChestStyle.BalloonChest] = ItemID.BalloonChest,
+        [ChestStyle.ReefChest] = ItemID.CoralChest
       };
     });
     public int GetItemTypeFromChestStyle(ChestStyle chestStyle) {

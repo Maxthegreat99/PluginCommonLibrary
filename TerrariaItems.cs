@@ -181,7 +181,6 @@ namespace Terraria.Plugins.Common {
     });
     public int GetItemTypeFromBlockType(int blockType, int objectStyle = 0) {
       Check.ValidBlockType(blockType);
-      
       // TODO: update and fix this
       switch (blockType) {
         case TileID.Mannequin: 

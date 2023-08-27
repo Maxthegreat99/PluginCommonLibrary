@@ -286,6 +286,6 @@
     <PreBuildEvent>IF "$(ConfigurationName)" == "Release" (
   GitVersion.exe /updateassemblyinfo "$(ProjectDir)Properties/AssemblyInfo.cs"
 )</PreBuildEvent>
-    <PlatformTarget>ARM64</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 </Project>

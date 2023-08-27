@@ -60,5 +60,8 @@ namespace Terraria.Plugins.Common {
     SandstoneChest,
     BambooChest,
     DesertChest,
-  }
+    AshWoodChest,
+    BalloonChest,
+    ReefChest
+    }
 }

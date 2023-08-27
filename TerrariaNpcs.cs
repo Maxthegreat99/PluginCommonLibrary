@@ -117,19 +117,19 @@ namespace Terraria.Plugins.Common {
     }
 
     public IEnumerable<int> EnumerateFriendlyNPCIndexes() {
-      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 18, 19, 20, 22, 38, 54, 107, 108, 124, 160 ,178, 207, 208, 209, 227, 228, 229, 368, 369});
+      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 18, 19, 20, 22, 38, 54, 107, 108, 124, 160 ,178, 207, 208, 209, 227, 228, 229, 368, 369, 589, 633, 663});
     }
 
     public IEnumerable<int> EnumerateFriendlyFemaleNPCIndexes() {
-      return this.EnumerateSpecificNPCIndexes(new List<int> { 18, 20, 124, 178, 208});
+      return this.EnumerateSpecificNPCIndexes(new List<int> { 18, 20, 124, 178, 208, 633, 663});
     }
 
     public IEnumerable<int> EnumerateFriendlyMaleNPCIndexes() {
-      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 19, 22, 38, 54, 107, 108, 160, 207, 209, 227, 228, 229, 368, 369});
+      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 19, 22, 38, 54, 107, 108, 160, 207, 209, 227, 228, 229, 368, 369, 589});
     }
 
     public IEnumerable<int> EnumerateShopNPCIndexes() {
-      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 18, 19, 20, 38, 54, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 368});
+      return this.EnumerateSpecificNPCIndexes(new List<int> { 17, 18, 19, 20, 38, 54, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 368, 633, 663});
     }
   }
 }

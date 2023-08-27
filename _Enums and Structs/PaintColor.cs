@@ -33,7 +33,7 @@ namespace Terraria.Plugins.Common {
     Brown = 28,
     Shadow = 29,
     Negative = 30,
-    Illuminant = 31,
+    Illuminant = 31
   }
 }
 // Note: Get names of new paints from the respective paint items.

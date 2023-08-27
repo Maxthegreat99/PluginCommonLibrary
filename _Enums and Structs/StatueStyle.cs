@@ -87,5 +87,8 @@ namespace Terraria.Plugins.Common {
     Seagull,
     Owl,
     Turtle,
+    Cockatiel,
+    Macaw,
+    Toucan 
   }
 }

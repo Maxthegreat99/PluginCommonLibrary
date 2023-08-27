@@ -6,6 +6,7 @@ namespace Terraria.Plugins.Common {
     SuperDartTrap,
     FlameTrap,
     SpikyBallTrap,
-    SpearTrap
+    SpearTrap,
+    VenomDartTrap
   }
 }

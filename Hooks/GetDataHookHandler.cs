@@ -906,7 +906,7 @@ namespace Terraria.Plugins.Common.Hooks {
               break;
 
             int color = e.Msg.readBuffer[e.Index + 4];
-
+            
             e.Handled = this.OnTilePaint(new TilePaintEventArgs(player, new DPoint(tileX, tileY), (PaintColor)color));
             break;
           }
