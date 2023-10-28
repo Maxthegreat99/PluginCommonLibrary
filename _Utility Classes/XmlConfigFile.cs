@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using TShockAPI.Configuration;
+using TShockAPI;
 
 namespace Terraria.Plugins.Common
 {
@@ -37,7 +37,7 @@ namespace Terraria.Plugins.Common
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving config file: {ex.Message}");
+                TShock.Log.ConsoleError($"Error loading config file at {filePath}: {ex.Message}");
             }
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Terraria.Plugins.Common
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading config file: {ex.Message}");
+                TShock.Log.ConsoleError($"Error loading config file at {filePath}: {ex.Message}");
                 return true;
             }
         }
@@ -108,7 +108,7 @@ namespace Terraria.Plugins.Common
             return false; // Files have the same fields
         }
 
-        public XmlDocument SerializeToXmlDocument(object input)
+        public static XmlDocument SerializeToXmlDocument(object input)
         {
             XmlSerializer ser = new XmlSerializer(input.GetType());
 
