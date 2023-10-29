@@ -307,6 +307,6 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>TShock;Terraria;Library;Server</PackageTags>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Version>4.2.0</Version>
+    <Version>4.2.0.1</Version>
   </PropertyGroup>
 </Project>

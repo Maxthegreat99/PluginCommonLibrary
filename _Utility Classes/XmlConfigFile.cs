@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using Terraria.Plugins.Common._Utility_Classes;
 using TShockAPI;
 
 namespace Terraria.Plugins.Common
@@ -22,6 +25,7 @@ namespace Terraria.Plugins.Common
         {
             filePath = path;
         }
+
         /// <summary>
         /// Saves the config file to the path
         /// </summary>
@@ -30,21 +34,24 @@ namespace Terraria.Plugins.Common
             try
             {
                 var serializer = new XmlSerializer(typeof(TSettings));
-                using (var writer = new StreamWriter(filePath))
+                using (var writer = XmlWriter.Create(filePath, new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
                 {
                     serializer.Serialize(writer, Settings);
                 }
+
+                WriteComments(Settings, filePath);
             }
             catch (Exception ex)
             {
                 TShock.Log.ConsoleError($"Error loading config file at {filePath}: {ex.Message}");
             }
         }
+
         /// <summary>
         /// Reads the config files if the file is not missing
-        /// any attributes
+        /// any attributes and if reading was successful
         /// </summary>
-        /// <returns> bool informing if the configs need to be written </returns>
+        /// <returns> returns true if an error occurs or if the configs are missing </returns>
         public bool Read()
         {
             try
@@ -53,7 +60,7 @@ namespace Terraria.Plugins.Common
                     return true;
 
                 var serializer = new XmlSerializer(typeof(TSettings));
-                using (var reader = new StreamReader(filePath))
+                using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true  }))
                 {
                     Settings = (TSettings)serializer.Deserialize(reader);
                 }
@@ -71,27 +78,33 @@ namespace Terraria.Plugins.Common
         {
             // Load the config file
             XmlDocument configsToVerify = new XmlDocument();
-            configsToVerify.Load(filePath);
+            using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true }))
+            {
+                configsToVerify.Load(reader);
+            }
 
             // Load the current configs
             XmlDocument currentConfigs = SerializeToXmlDocument(Settings);
 
             // Extract field names from the first XML file
-            XmlNodeList fields1 = configsToVerify.SelectNodes("//*");
+            var fields1 = configsToVerify.SelectNodes("//*")
+                            .Cast<XmlNode>()
+                            .Where(i => i.NodeType == XmlNodeType.Element);
 
             // Extract field names from the second XML file
-            XmlNodeList fields2 = currentConfigs.SelectNodes("//*");
-
+            var fields2 = currentConfigs.SelectNodes("//*")
+                            .Cast<XmlNode>()
+                            .Where(i => i.NodeType == XmlNodeType.Element);
             // Compare the field names
-            if (fields1.Count != fields2.Count)
+            if (fields1.Count() != fields2.Count())
             {
                 return true; // Files have different number of fields
             }
 
-            foreach (XmlAttribute field1 in fields1)
+            foreach (XmlElement field1 in fields1)
             {
                 bool found = false;
-                foreach (XmlAttribute field2 in fields2)
+                foreach (XmlElement field2 in fields2)
                 {
                     if (field1.Name == field2.Name)
                     {
@@ -122,6 +135,7 @@ namespace Terraria.Plugins.Common
 
                 XmlReaderSettings settings = new XmlReaderSettings();
                 settings.IgnoreWhitespace = true;
+                settings.IgnoreComments = true;
 
                 using (var xtr = XmlReader.Create(memStm, settings))
                 {
@@ -131,6 +145,49 @@ namespace Terraria.Plugins.Common
             }
 
             return xd;
+        }
+
+        private static void WriteComments(object objectToSerialize, string path)
+        {
+            try
+            {
+                var propertyComments = GetPropertiesAndComments(objectToSerialize);
+                if (!propertyComments.Any()) return;
+
+                var doc = new XmlDocument();
+                doc.Load(path);
+
+                var parent = doc.SelectSingleNode(objectToSerialize.GetType().Name);
+                if (parent == null) return;
+
+                var childNodes = parent.ChildNodes.Cast<XmlNode>().Where(n => propertyComments.ContainsKey(n.Name));
+                foreach (var child in childNodes)
+                {
+                    parent.InsertBefore(doc.CreateComment(propertyComments[child.Name]), child);
+                }
+
+                doc.Save(path);
+            }
+            catch (Exception ex)
+            {
+                TShock.Log.ConsoleError($"Error writing config file at {path}: {ex.Message}");
+            }
+        }
+
+        private static Dictionary<string, string> GetPropertiesAndComments(object objectToSerialize)
+        {
+            var propertyComments = objectToSerialize.GetType().GetProperties()
+                .Where(p => p.GetCustomAttributes(typeof(XmlCommentAttribute), false).Any())
+                .Select(v => new
+                {
+                    Name = (((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute),
+                    false)[0]).CustomAttributeName == "")
+                    ? v.Name
+                    : ((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute), false)[0]).CustomAttributeName,
+                    Value = ((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute), false)[0]).Value
+                })
+                 .ToDictionary(t => t.Name, t => t.Value);
+            return propertyComments;
         }
     }
 }
