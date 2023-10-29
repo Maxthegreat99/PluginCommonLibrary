@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin Common Library", "Plugin Common Library.csproj", "{56EEC8E7-2B90-4394-A9EF-95450FEA1723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginCommonLibrary", "PluginCommonLibrary.csproj", "{56EEC8E7-2B90-4394-A9EF-95450FEA1723}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

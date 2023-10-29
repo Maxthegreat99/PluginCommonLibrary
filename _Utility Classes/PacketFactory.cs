@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.IO;
+using Microsoft.Xna.Framework;
 
 public class PacketFactory
 {
@@ -92,6 +93,13 @@ public class PacketFactory
     public PacketFactory PackBuffer(byte[] buffer)
     {
         writer.Write(buffer);
+        return this;
+    }
+
+    public PacketFactory PackVector2(Vector2 vec)
+    {
+        writer.Write(vec.X);
+        writer.Write(vec.Y);
         return this;
     }
 
