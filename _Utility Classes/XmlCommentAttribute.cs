@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Terraria.Plugins.Common._Utility_Classes
+namespace Terraria.Plugins.Common
 {
     /// <summary>
     /// Allows to create xml comments directly before

@@ -5,10 +5,11 @@ using System.Collections.ObjectModel;
 using Terraria.ID;
 
 namespace Terraria.Plugins.Common.Collections {
-  /// <summary>
-  ///   Terraria.Item[] to IList<ItemData> adapter.
-  /// </summary>
-  public class ItemsAdapter: IList<ItemData> {
+    /// <summary>
+    ///   Terraria.Item[] to IList<ItemData> adapter.
+    /// </summary>
+    public class ItemsAdapter : IList<ItemData>
+    {
     private static volatile Dictionary<int,int[]> PreferredSlots;
     protected readonly Item[] itemArray;
     protected readonly int fromIndex;

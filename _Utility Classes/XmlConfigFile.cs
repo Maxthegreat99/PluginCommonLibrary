@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-using Terraria.Plugins.Common._Utility_Classes;
 using TShockAPI;
 
 namespace Terraria.Plugins.Common
@@ -16,6 +15,7 @@ namespace Terraria.Plugins.Common
     public class XmlConfigFile<TSettings> where TSettings : new()
     {
         public static Action<XmlConfigFile<TSettings>> OnConfigRead;
+        public static Action<XmlConfigFile<TSettings>> OnConfigWrite;
 
         private string filePath;
 
@@ -29,51 +29,54 @@ namespace Terraria.Plugins.Common
         /// <summary>
         /// Saves the config file to the path
         /// </summary>
+        /// <remarks>
+        /// It is recommended that you use proper error handling techniques
+        /// while using this method.
+        /// </remarks>
         public void Write()
         {
-            try
+            var serializer = new XmlSerializer(typeof(TSettings));
+            using (var writer = XmlWriter.Create(filePath, new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
             {
-                var serializer = new XmlSerializer(typeof(TSettings));
-                using (var writer = XmlWriter.Create(filePath, new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
-                {
-                    serializer.Serialize(writer, Settings);
-                }
-
-                WriteComments(Settings, filePath);
+                serializer.Serialize(writer, Settings);
             }
-            catch (Exception ex)
-            {
-                TShock.Log.ConsoleError($"Error loading config file at {filePath}: {ex.Message}");
-            }
+            WriteComments(Settings, filePath);
+            OnConfigWrite?.Invoke(this);
         }
 
         /// <summary>
         /// Reads the config files if the file is not missing
         /// any attributes and if reading was successful
         /// </summary>
-        /// <returns> returns true if an error occurs or if the configs are missing </returns>
+        /// <remarks>
+        /// It is recommended that you use proper error handling techniques
+        /// while using this method.
+        /// </remarks>
+        /// <returns> returns true if an there are configs are missing </returns>
         public bool Read()
         {
-            try
-            {
-                if (IsMissingConfigs())
-                    return true;
-
-                var serializer = new XmlSerializer(typeof(TSettings));
-                using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true  }))
-                {
-                    Settings = (TSettings)serializer.Deserialize(reader);
-                }
-                OnConfigRead?.Invoke(this);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                TShock.Log.ConsoleError($"Error loading config file at {filePath}: {ex.Message}");
+            if (IsMissingConfigs())
                 return true;
+
+            var serializer = new XmlSerializer(typeof(TSettings));
+            using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true }))
+            {
+                Settings = (TSettings)serializer.Deserialize(reader);
             }
+            OnConfigRead?.Invoke(this);
+
+            return false;
         }
 
+        /// <summary>
+        /// Whether or not the plugin is missing configs
+        /// </summary>
+        /// <remarks>
+        /// It is recommended that you use proper error handling techniques
+        /// while using this method.
+        /// </remarks>
+        /// <returns>true if there are missing fields in the file,
+        /// false if the file is alright</returns>
         public bool IsMissingConfigs()
         {
             // Load the config file
@@ -171,6 +174,7 @@ namespace Terraria.Plugins.Common
             catch (Exception ex)
             {
                 TShock.Log.ConsoleError($"Error writing config file at {path}: {ex.Message}");
+                TShock.Log.ConsoleDebug(ex.StackTrace);
             }
         }
 
