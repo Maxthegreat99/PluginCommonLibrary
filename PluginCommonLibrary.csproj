@@ -306,10 +306,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>TShock;Terraria;Library;Server</PackageTags>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Version>4.2.0.3</Version>
-    <PackageReleaseNotes>- Modified the Xml read an write methods to give more liberty to developers for error handling
-- Added documentation
-- Changed Terraria.Plugins.Common._Utility_Classes to Terraria.Plugins.Common</PackageReleaseNotes>
+    <Version>4.2.0.4</Version>
+    <PackageReleaseNotes>- You now no longer need to set CustomAttributeName to XmlComment if using a custom serialized property name</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 </Project>

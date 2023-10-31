@@ -13,6 +13,5 @@ namespace Terraria.Plugins.Common
     public class XmlCommentAttribute : Attribute
     {
         public string Value { get; set; }
-        public string CustomAttributeName { get; set; } = "";
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using TShockAPI;
@@ -184,14 +185,25 @@ namespace Terraria.Plugins.Common
                 .Where(p => p.GetCustomAttributes(typeof(XmlCommentAttribute), false).Any())
                 .Select(v => new
                 {
-                    Name = (((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute),
-                    false)[0]).CustomAttributeName == "")
-                    ? v.Name
-                    : ((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute), false)[0]).CustomAttributeName,
+                    Name = GetSerializedName(v),
                     Value = ((XmlCommentAttribute)v.GetCustomAttributes(typeof(XmlCommentAttribute), false)[0]).Value
                 })
                  .ToDictionary(t => t.Name, t => t.Value);
             return propertyComments;
+        }
+
+        private static string GetSerializedName(PropertyInfo property)
+        {
+            var attributes = property.GetCustomAttributes(typeof(XmlElementAttribute), false);
+            if (attributes == null
+                || attributes.Length == 0
+                || string.IsNullOrEmpty(((XmlElementAttribute)attributes[0]).ElementName)
+                || string.IsNullOrWhiteSpace(((XmlElementAttribute)attributes[0]).ElementName)
+                || ((XmlElementAttribute)attributes[0]).ElementName == property.Name)
+                return property.Name;
+
+            return ((XmlElementAttribute)attributes[0]).ElementName;
+
         }
     }
 }
