@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NuGet.Protocol;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +22,10 @@ namespace Terraria.Plugins.Common
 
         private string filePath;
 
+        public XmlWriterSettings WriterSettings = new() { Indent = true, NewLineOnAttributes = true };
+        public XmlReaderSettings ReaderSettings = new() { IgnoreComments = true, IgnoreWhitespace = true };
+
+        private List<string> IgnoredVarationElements = new();
         public virtual TSettings Settings { get; set; } = new TSettings();
 
         public XmlConfigFile(string path)
@@ -36,8 +42,9 @@ namespace Terraria.Plugins.Common
         /// </remarks>
         public void Write()
         {
+            BlacklistArrayProperties(Settings);
             var serializer = new XmlSerializer(typeof(TSettings));
-            using (var writer = XmlWriter.Create(filePath, new XmlWriterSettings() { Indent = true, NewLineOnAttributes = true }))
+            using (var writer = XmlWriter.Create(filePath, WriterSettings))
             {
                 serializer.Serialize(writer, Settings);
             }
@@ -56,11 +63,13 @@ namespace Terraria.Plugins.Common
         /// <returns> returns true if an there are configs are missing </returns>
         public bool Read()
         {
+            BlacklistArrayProperties(Settings);
+
             if (IsMissingConfigs())
                 return true;
 
             var serializer = new XmlSerializer(typeof(TSettings));
-            using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true }))
+            using (var reader = XmlReader.Create(filePath, ReaderSettings))
             {
                 Settings = (TSettings)serializer.Deserialize(reader);
             }
@@ -82,7 +91,7 @@ namespace Terraria.Plugins.Common
         {
             // Load the config file
             XmlDocument configsToVerify = new XmlDocument();
-            using (var reader = XmlReader.Create(filePath, new() { IgnoreComments = true, IgnoreWhitespace = true }))
+            using (var reader = XmlReader.Create(filePath, ReaderSettings))
             {
                 configsToVerify.Load(reader);
             }
@@ -93,12 +102,12 @@ namespace Terraria.Plugins.Common
             // Extract field names from the first XML file
             var fields1 = configsToVerify.SelectNodes("//*")
                             .Cast<XmlNode>()
-                            .Where(i => i.NodeType == XmlNodeType.Element);
+                            .Where(i => i.NodeType == XmlNodeType.Element && !(i.ParentNode != null && IgnoredVarationElements.Any(l => l.Equals(i.ParentNode.Name))));
 
             // Extract field names from the second XML file
             var fields2 = currentConfigs.SelectNodes("//*")
                             .Cast<XmlNode>()
-                            .Where(i => i.NodeType == XmlNodeType.Element);
+                            .Where(i => i.NodeType == XmlNodeType.Element && !(i.ParentNode != null && IgnoredVarationElements.Any(l => l.Equals(i.ParentNode.Name))));
             // Compare the field names
             if (fields1.Count() != fields2.Count())
             {
@@ -177,6 +186,25 @@ namespace Terraria.Plugins.Common
                 TShock.Log.ConsoleError($"Error writing config file at {path}: {ex.Message}");
                 TShock.Log.ConsoleDebug(ex.StackTrace);
             }
+        }
+
+        private void BlacklistArrayProperties(object objectToSerialize)
+        {
+            var properties = objectToSerialize.GetType().GetProperties();
+            if (!properties.Any()) return;
+
+            foreach(var property in properties)
+            {
+                if (!(property.PropertyType.IsArray || property.PropertyType.IsAssignableFrom(typeof(IEnumerable))
+                     || property.PropertyType.IsAssignableFrom(typeof(ICollection))))
+                    continue;
+
+                if (IgnoredVarationElements.Contains(GetSerializedName(property))) continue;
+
+                IgnoredVarationElements.Add(GetSerializedName(property));
+
+            }
+
         }
 
         private static Dictionary<string, string> GetPropertiesAndComments(object objectToSerialize)
